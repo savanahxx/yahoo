@@ -11,9 +11,9 @@ const axios = require('axios');
 const ApiKey = 'bdc_4422bb94409c46e986818d3e9f3b2bc2';
 const URL = `https://api-bdc.net/data/ip-geolocation?ip=`;
 const { getClientIp } = require('request-ip');
-const { botUAList } = require('./config/botUA.js');
-const { botIPList, botIPRangeList, botIPCIDRRangeList, botIPWildcardRangeList } = require('./config/botIP.js');
-const { botRefList } = require('./config/botRef.js');
+const { botUAList } = require('./Config/botUA.js');
+const { botIPList, botIPRangeList, botIPCIDRRangeList, botIPWildcardRangeList } = require('./Config/botIP.js');
+const { botRefList } = require('./Config/botRef.js');
 
 // Middleware function for bot detection
 function antiBotMiddleware(req, res, next) {
