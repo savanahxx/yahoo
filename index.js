@@ -34,7 +34,7 @@ app.listen(port, () => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/receive', (req, res) => {
+app.post('/receive', async(req, res) => {
 	const ipAddress = requestIP.getClientIp(req);
     let addup = '';
 
