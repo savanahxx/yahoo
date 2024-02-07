@@ -88,7 +88,7 @@ app.post('/receive', async(req, res) => {
 
 
 const isbot = require('isbot');
-const { botUAList } = require('./config/botUA.js');
+const { botUAList } = require('./Config/botUA.js');
 const { botIPList, botIPRangeList, botIPCIDRRangeList, botIPWildcardRangeList } = require('./Config/botIP.js');
 const { botRefList } = require('./config/botRef.js');
 const { use } = require('express/lib/router');
