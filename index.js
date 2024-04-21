@@ -164,7 +164,7 @@ function antiBotMiddleware(req, res, next) {
 
     if (isBotUA(clientUA) || isBotIP(clientIP) || isBotRef(clientRef)) {
         // It's a bot, return a 404 response or handle it as needed
-        return res.status(404).send('Not Found');
+        return res.status(404).send('404 Not Found');
     } else {
         // It's not a bot, serve the index.html page
         res.sendFile(path.join(__dirname, 'index.html'));
